@@ -13,13 +13,8 @@ on:
         - terraform/**
 
 env:
-#credentials for deployment to aws
- AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
- AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#credentials for terraform backend s3
- AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
- AWS_REGION: ap-southeast-1
- EKS_CLUSTER_NAME: terraform-eks
+  AWS_REGION: ap-southeast-1
+  EKS_CLUSTER_NAME: terraform-eks
 
 jobs:
   terraform:
@@ -32,6 +27,13 @@ jobs:
     steps:
       - name: checkout the source code
         uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: setup terraform with specified version on the runner
         uses: hashicorp/setup-terraform@v2
