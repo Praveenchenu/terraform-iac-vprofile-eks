@@ -10,4 +10,3 @@ variable "clusterName" {
   default     = "terraform-eks"
 }
 
-## created by devops4sure.com
