@@ -29,7 +29,7 @@ terraform {
   backend "s3" {
     bucket = "terraformgitactions122"
     key    = "terraform.tfstate"
-    region = "us-east-1"
+    region = "ap-southeast-1"
   }
 
   required_version = ">= 1.5.0, < 2.0.0"
