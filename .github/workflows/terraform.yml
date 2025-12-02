@@ -40,7 +40,7 @@ jobs:
 
       - name: terraform init
         id: init
-        run: terraform init -backend-config="bucket=$AWS_S3_BUCKET }}"
+        run: terraform init -backend-config="bucket=${AWS_S3_BUCKET}"
       
       - name: terraform format
         id: fmt
